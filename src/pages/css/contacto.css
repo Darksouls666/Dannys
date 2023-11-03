@@ -1,0 +1,26 @@
+.contacto {
+    text-align: center;
+    color: black;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+p {
+    font-size: 20px;
+}
+
+li {
+    font-size: 20px;
+}
+
+.titulo {
+    color: black;
+    width: 600;
+    /* Cambia el tamaño del título si es necesario */
+}
+
+h2 {
+    color: black;
+    width: 600;
+}

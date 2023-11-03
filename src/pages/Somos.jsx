@@ -2,7 +2,7 @@ import React from "react";
 
 const Somos = () => {
     return (
-        <div>
+        <div className="wrapper">
             <h3>Aqui ira información de la empresa</h3>
         </div>
     )

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
     return (
 
-        <nav className="navbar">
+        <nav className="navbox">
             <div className="nav-logo">
                 <img src={logo} alt="logo" />
                 <p>DANNYS</p>

@@ -1,20 +1,25 @@
 body {
-    background-color: #ffa500;
+    background-color: #ffa500 !important;
     font-family: 'Cascadia Code', sans-serif;
     font-size: 1rem;
 }
 
-.navbar {
+.navbox {
+    width: 100%;
+    height: auto;
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
-    padding: 16px;
+    padding: 7px 25px;
     box-shadow: 0 1px 3px -2px black;
+    align-items: center;
 }
 
 .nav-logo {
     display: flex;
     align-items: center;
     gap: 10px;
+
 }
 
 .nav-logo p {
@@ -73,7 +78,7 @@ body {
 
 nav {
     background-color: #b00303;
-    height: 50px;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -93,13 +98,13 @@ li {
     margin: 10px;
 }
 
-a {
+.nav-menu li a {
     text-decoration: none;
-    color: #fff;
+    color: white;
     font-size: 25px;
 }
 
-a:hover {
+.nav-menu li a:hover {
     color: yellow;
     transition: all;
     transition: 0.5s;
