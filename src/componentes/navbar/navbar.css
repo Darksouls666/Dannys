@@ -104,6 +104,12 @@ li {
     font-size: 25px;
 }
 
+@media (max-width: 768px) {
+    .nav-menu li a {
+        font-size: 20px;
+    }
+}
+
 .nav-menu li a:hover {
     color: yellow;
     transition: all;

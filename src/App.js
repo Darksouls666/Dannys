@@ -1,12 +1,25 @@
+import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Home from './componentes/home/home'; // Asumo que el componente se llama "Home", no "home"
-import AddProducts from './componentes/addProduct/addproducts'; // Asumo que el componente se llama "AddProducts", no "addproducts"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './componentes/home/home';
+import AddProducts from './componentes/addProduct/addproducts';
 import Contacto from './pages/Contacto';
 import Somos from './pages/Somos';
 import Navbar from './componentes/navbar';
 
 function App() {
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registrado con éxito:', registration);
+        })
+        .catch(error => {
+          console.error('Error al registrar el Service Worker:', error);
+        });
+    }
+  }, []);
+
   return (
     <div className="App">
       <div>
@@ -25,3 +38,4 @@ function App() {
 }
 
 export default App;
+
