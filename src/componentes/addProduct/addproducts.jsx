@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import "./addproducts.css";
-import { storage, db } from "../../config/config"
+import './addproducts.css';
+import { storage, db } from '../../config/config';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { collection, addDoc } from 'firebase/firestore';
 
 const AddProducts = () => {
     const [productName, setProductName] = useState('');
@@ -8,10 +10,8 @@ const AddProducts = () => {
     const [productImg, setProductImg] = useState(null);
     const [error, setError] = useState('');
 
-    const types = ['image/png', 'image/jpeg']; // TIPOS DE IMAGEN
+    const types = ['image/png', 'image/jpeg'];
 
-
-    // EL MANEJADOR DE IMAGENES
     const productImgHandler = (e) => {
         let selectedFile = e.target.files[0];
         if (selectedFile && types.includes(selectedFile.type)) {
@@ -23,34 +23,34 @@ const AddProducts = () => {
         }
     }
 
-
-    //AÑADIR PRODUCTOS UNA VEZ ENVIADOS
-    const addProduct = (e) => {
+    const addProduct = async (e) => {
         e.preventDefault();
-        // GUARDAR LA IMAGEN 
-        console.log(productName, productPrice, productImg)
-        const uploadTask = storage.ref(`product-images/${productImg.name}`).put(productImg);
-        uploadTask.on('state_changed', snapshot => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log(progress);
-        }, err =>
-            setError(err.message)
-            , () => {
-                // OBTENIENDO EL URL DE LA IMAGEN SI ES CORRECTA ENTONCES GUARDANDOLA EN LA DB
-                storage.ref('product-images').child(productImg.name).getDownloadURL().then(url => {
-                    db.collection('Products').add({
-                        ProductName: productName,
-                        ProductPrice: Number(productPrice),
-                        ProductImg: url
-                    }).then(() => {
-                        setProductName('');
-                        setProductPrice(0);
-                        setProductImg('');
-                        setError('');
-                        document.getElementById('file').value = '';
-                    }).catch(err => setError(err.message));
-                })
-            })
+        if (!productImg || !productName || productPrice <= 0) {
+            setError('Por favor completa todos los campos');
+            return;
+        }
+
+        try {
+            const uploadTask = uploadBytesResumable(ref(storage, `product-images/${productImg.name}`), productImg);
+
+            await uploadTask;
+
+            const imageUrl = await getDownloadURL(ref(storage, `product-images/${productImg.name}`));
+
+            await addDoc(collection(db, 'Products'), {
+                ProductName: productName,
+                ProductPrice: Number(productPrice),
+                ProductImg: imageUrl
+            });
+
+            setProductName('');
+            setProductPrice(0);
+            setProductImg(null);
+            setError('');
+            document.getElementById('file').value = '';
+        } catch (error) {
+            setError(error.message);
+        }
     }
 
     return (
@@ -78,7 +78,7 @@ const AddProducts = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default AddProducts;

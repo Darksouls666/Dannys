@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Configuración de Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBdhRvo24hw3Kf4eNIlu1K8fWrBmT78xl0",
     authDomain: "dannys-dff29.firebaseapp.com",
@@ -14,10 +14,13 @@ const firebaseConfig = {
     measurementId: "G-Z2EQ9F9M9H"
 };
 
+// Inicializar Firebase App
 const firebaseApp = initializeApp(firebaseConfig);
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+
+// Obtener instancias específicas de Firebase
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
+// Exportar las instancias
 export { auth, db, storage };
