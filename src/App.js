@@ -7,8 +7,22 @@ import Contacto from './pages/Contacto';
 import Somos from './pages/Somos';
 import Navbar from './componentes/navbar';
 import ProductsContextProvider from './global/ProductsContext';
+import { Login } from './componentes/login/Login';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../src/config/config';
+import Signup from './componentes/signup/Signup';
+
 
 function App() {
+
+  // Inicializar Firebase
+  useEffect(() => {
+    initializeApp(firebaseConfig);
+    return () => {
+      // Puedes realizar alguna limpieza si es necesario al desmontar el componente
+    };
+  }, []);
+
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -33,6 +47,8 @@ function App() {
               <Route path="addProducts" element={<AddProducts />} />
               <Route path="/Contacto" element={<Contacto />} />
               <Route path="/Somos" element={<Somos />} />
+              <Route path='/Signup' element={<Signup />}></Route>
+              <Route path='/Login' element={<Login />}></Route>
             </Routes>
           </BrowserRouter>
         </ProductsContextProvider>
@@ -42,4 +58,3 @@ function App() {
 }
 
 export default App;
-

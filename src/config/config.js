@@ -14,13 +14,10 @@ const firebaseConfig = {
     measurementId: "G-Z2EQ9F9M9H"
 };
 
-// Inicializar Firebase App
-const firebaseApp = initializeApp(firebaseConfig);
 
-// Obtener instancias específicas de Firebase
-const auth = getAuth(firebaseApp);
-const db = getFirestore(firebaseApp);
-const storage = getStorage(firebaseApp);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-// Exportar las instancias
-export { auth, db, storage };
+export { auth, db, storage, firebaseConfig };

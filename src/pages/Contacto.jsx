@@ -5,7 +5,7 @@ import "./css/contacto.css"
 const Contacto = () => {
     return (
         <div className="contacto">
-            <h1 className="titulo">Contacto</h1>
+            <h2>Contacto</h2>
             <p>
                 Frutería Danys se encuentra a su servicio para la venta de frutas de la
                 mejor calidad y frescas a precios increíbles, con promociones y el mejor
