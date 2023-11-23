@@ -11,6 +11,10 @@ import { Login } from './componentes/login/Login';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../src/config/config';
 import Signup from './componentes/signup/Signup';
+import { CartContextProvider } from './global/CartContext';
+import Cart from './componentes/cart/Cart';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -40,17 +44,20 @@ function App() {
     <div className="App">
       <div>
         <ProductsContextProvider>
-          <BrowserRouter>
-            <Navbar></Navbar>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="addProducts" element={<AddProducts />} />
-              <Route path="/Contacto" element={<Contacto />} />
-              <Route path="/Somos" element={<Somos />} />
-              <Route path='/Signup' element={<Signup />}></Route>
-              <Route path='/Login' element={<Login />}></Route>
-            </Routes>
-          </BrowserRouter>
+          <CartContextProvider>
+            <BrowserRouter>
+              <Navbar></Navbar>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="addProducts" element={<AddProducts />} />
+                <Route path="/Contacto" element={<Contacto />} />
+                <Route path="/Somos" element={<Somos />} />
+                <Route path='/Signup' element={<Signup />}></Route>
+                <Route path='/Login' element={<Login />}></Route>
+                <Route path='/Cart' element={<Cart />}></Route>
+              </Routes>
+            </BrowserRouter>
+          </CartContextProvider>
         </ProductsContextProvider>
       </div>
     </div>

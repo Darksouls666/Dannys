@@ -1,10 +1,16 @@
 import React, { useContext } from 'react';
 import { ProductsContext } from '../../global/ProductsContext'
 import "../products/products.css";
+import { CartContext } from '../../global/CartContext';
 
 export const Products = () => {
 
     const { products } = useContext(ProductsContext);
+
+    // const data = useContext(CartContext);
+    // console.log(data);
+
+    const { dispatch } = useContext(CartContext);
 
     return (
         <>
@@ -20,7 +26,7 @@ export const Products = () => {
                         <div className='product-price'>
                             MXN {product.ProductPrice}.00
                         </div>
-                        <button className='addcart-btn'>AÑADIR AL CARRITO</button>
+                        <button className='addcart-btn' onClick={() => dispatch({ type: 'ADD_TO_CART', id: product.ProductID, product })}>AÑADIR AL CARRITO</button>
                     </div>
                 ))}
             </div>
@@ -29,3 +35,4 @@ export const Products = () => {
 }
 
 export default Products;
+
