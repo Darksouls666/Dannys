@@ -15,7 +15,7 @@ export const CartReducer = (state, action) => {
         case 'ADD_TO_CART':
             const check = shoppingCart.find(product => product.ProductID === action.id);
             if (check) {
-                toast.info('Añadido al carrito', {
+                toast.info('Producto ya añadido.', {
                     position: "top-right",
                     autoClose: 2000,
                     hideProgressBar: false,

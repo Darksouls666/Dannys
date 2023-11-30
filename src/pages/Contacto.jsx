@@ -1,6 +1,5 @@
 import React from "react";
-import "./css/contacto.css"
-
+import "./css/contacto.css";
 
 const Contacto = () => {
     return (
@@ -20,8 +19,12 @@ const Contacto = () => {
             <ul>
                 <li>Melchor Ocampo, Explanada Auditorio, Acámbaro, Guanajuato</li>
             </ul>
+            <h2>Mapa:</h2>
+            <div className="mapa">
+                <img src="/img/Mapa.jpg" alt="Mapa de ubicación" />
+            </div>
         </div>
-    )
-}
+    );
+};
 
 export default Contacto;

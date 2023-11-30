@@ -7,13 +7,14 @@ import Contacto from './pages/Contacto';
 import Somos from './pages/Somos';
 import Navbar from './componentes/navbar';
 import ProductsContextProvider from './global/ProductsContext';
-import { Login } from './componentes/login/Login';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../src/config/config';
 import Signup from './componentes/signup/Signup';
 import { CartContextProvider } from './global/CartContext';
 import Cart from './componentes/cart/Cart';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from './componentes/login/Login'
+import { Cashout } from './componentes/cashout/Cashout';
 
 
 
@@ -55,6 +56,7 @@ function App() {
                 <Route path='/Signup' element={<Signup />}></Route>
                 <Route path='/Login' element={<Login />}></Route>
                 <Route path='/Cart' element={<Cart />}></Route>
+                <Route path='/cashout' element={<Cashout />}></Route>
               </Routes>
             </BrowserRouter>
           </CartContextProvider>

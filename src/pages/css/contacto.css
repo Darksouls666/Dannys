@@ -23,3 +23,10 @@ h2 {
     color: black;
     width: 600;
 }
+
+/* Estilos adicionales para centrar la imagen */
+img {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}

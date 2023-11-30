@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-import { db } from '../../config/config';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
+
 
 const Signup = () => {
     // Definiendo estado
@@ -34,7 +35,10 @@ const Signup = () => {
             const auth = getAuth();
             const cred = await createUserWithEmailAndPassword(auth, email, password);
 
-            await db.collection('SignedUpUsersData').doc(cred.user.uid).set({
+            // Crear un documento en Firestore para el usuario
+            const firestore = getFirestore();
+            const userDocRef = doc(firestore, 'SignedUpUsersData', cred.user.uid);
+            await setDoc(userDocRef, {
                 Name: name,
                 Email: email,
                 Password: password

@@ -7,9 +7,6 @@ export const Products = () => {
 
     const { products } = useContext(ProductsContext);
 
-    // const data = useContext(CartContext);
-    // console.log(data);
-
     const { dispatch } = useContext(CartContext);
 
     return (

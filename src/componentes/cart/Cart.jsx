@@ -64,9 +64,9 @@ const Cart = () => {
                         <span>Cantidad total</span>
                         <span>{totalQty}</span>
                     </div>
-                    <Link to='cashout' className='cashout-link'>
+                    <Link to='../cashout' className='cashout-link'>
                         <button className='btn btn-success btn-md' style={{ marginTop: 5 + 'px' }}>
-                            Dinero en entrega
+                            Pago en entrega
                         </button>
                     </Link>
                 </div>}
